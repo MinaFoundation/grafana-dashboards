@@ -1,0 +1,892 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 10,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 4,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": 1800000,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 150,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 18,
+        "x": 0,
+        "y": 0
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [
+            "lastNotNull",
+            "count"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "peer_id.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "asc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "5m"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "block_height_at_best_tip",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Block Height Over Time",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "block_height_at_best_tip",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "block_height_at_best_tip",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Block Height Best Tip",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "block_height_at_best_tip": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 3
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "max_observed_block_height",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "max_observed_block_height",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Max Observed Block Height",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "max_observed_block_height": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "purple",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "max_observed_unvalidated_block_height",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "0",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "1"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "max_observed_unvalidated_block_height",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Max Observed Unvalidated Block Height",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "max_observed_unvalidated_block_height": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 5
+              },
+              {
+                "color": "#EAB839",
+                "value": 50
+              },
+              {
+                "color": "orange",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "sync_status.keyword",
+              "id": "3",
+              "settings": {
+                "min_doc_count": "0",
+                "order": "desc",
+                "orderBy": "_count",
+                "size": "0"
+              },
+              "type": "terms"
+            },
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "5m",
+                "min_doc_count": "0",
+                "trimEdges": "0"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Sync Status",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 10,
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "limit": 50,
+          "values": true
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "peer_id.keyword",
+              "id": "2",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "uptime_of_node",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Panel Title",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Max",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "60"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "Max"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Uptime",
+            "binary": {
+              "left": "Max / 60",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "60"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Max": true,
+              "Max / 60": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "peer_id.keyword": "Peer ID"
+            }
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 29
+      },
+      "id": 9,
+      "options": {
+        "bucketSize": 5,
+        "combine": false,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "peer_id.keyword",
+              "id": "1",
+              "settings": {
+                "min_doc_count": "1",
+                "order": "desc",
+                "orderBy": "_term",
+                "size": "0"
+              },
+              "type": "terms"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "field": "peer_count",
+              "id": "1",
+              "type": "max"
+            }
+          ],
+          "query": "_index:\"node-stats*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Peer Count",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "block_height_at_best_tip": true,
+              "catchup_job_states.failed": true,
+              "catchup_job_states.finished": true,
+              "catchup_job_states.to_build_breadcrumb": true,
+              "catchup_job_states.to_download": true,
+              "catchup_job_states.to_initial_validate": true,
+              "catchup_job_states.to_verify": true,
+              "catchup_job_states.wait_for_parent": true,
+              "commit_hash": true,
+              "git_branch": true,
+              "ip_address": true,
+              "libp2p_cpu_usage": true,
+              "libp2p_input_bandwidth": true,
+              "libp2p_output_bandwidth": true,
+              "max_observed_block_height": true,
+              "max_observed_unvalidated_block_height": true,
+              "peer_count": false,
+              "peer_id": false,
+              "pubsub_msg_broadcasted.new_state": true,
+              "pubsub_msg_broadcasted.snark_pool_diff": true,
+              "pubsub_msg_broadcasted.transaction_pool_diff": true,
+              "pubsub_msg_received.new_state": true,
+              "pubsub_msg_received.snark_pool_diff": true,
+              "pubsub_msg_received.transaction_pool_diff": true,
+              "received_blocks": true,
+              "rpc_received.answer_sync_ledger_query": true,
+              "rpc_received.ban_notify": true,
+              "rpc_received.get_ancestry": true,
+              "rpc_received.get_best_tip": true,
+              "rpc_received.get_epoch_ledger": true,
+              "rpc_received.get_node_status": true,
+              "rpc_received.get_some_initial_peers": true,
+              "rpc_received.get_staged_ledger_aux_and_pending_coinbases_at_hash": true,
+              "rpc_received.get_transition_chain": true,
+              "rpc_received.get_transition_chain_proof": true,
+              "rpc_received.get_transition_knowledge": true,
+              "rpc_sent.answer_sync_ledger_query": true,
+              "rpc_sent.ban_notify": true,
+              "rpc_sent.get_ancestry": true,
+              "rpc_sent.get_best_tip": true,
+              "rpc_sent.get_epoch_ledger": true,
+              "rpc_sent.get_node_status": true,
+              "rpc_sent.get_some_initial_peers": true,
+              "rpc_sent.get_staged_ledger_aux_and_pending_coinbases_at_hash": true,
+              "rpc_sent.get_transition_chain": true,
+              "rpc_sent.get_transition_chain_proof": true,
+              "rpc_sent.get_transition_knowledge": true,
+              "sync_status": true,
+              "uptime_of_node": true,
+              "version": true
+            },
+            "indexByName": {},
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "histogram"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Node Stats POC",
+  "uid": "c60fb097-c275-4c72-8d9d-e398fa388607",
+  "version": 22,
+  "weekStart": ""
+}

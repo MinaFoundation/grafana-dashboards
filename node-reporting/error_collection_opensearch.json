@@ -1,0 +1,610 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 12,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": "1"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "_index:\"node-error*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Error Count",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 21,
+        "x": 3,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto"
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "_index:\"node-error*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Error Count over Time",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": true
+          },
+          "mappings": [],
+          "noValue": "No Node Crashes Detected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Timestamp"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 194
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Error sexp"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 1088
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Node IP"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 106
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Error Backtrace"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 158
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 15,
+        "w": 24,
+        "x": 0,
+        "y": 6
+      },
+      "id": 3,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "order": "desc",
+                "size": "500",
+                "useTimeRange": true
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "_index:\"node-error*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Error Summary",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "block_height_at_best_tip": true,
+              "catchup_job_states.failed": true,
+              "catchup_job_states.finished": true,
+              "catchup_job_states.to_build_breadcrumb": true,
+              "catchup_job_states.to_download": true,
+              "catchup_job_states.to_initial_validate": true,
+              "catchup_job_states.to_verify": true,
+              "catchup_job_states.wait_for_parent": true,
+              "chain_id": true,
+              "commit_hash": true,
+              "contact_info": true,
+              "error.commit_id": true,
+              "git_branch": true,
+              "hardware_info": true,
+              "id": true,
+              "max_observed_block_height": true,
+              "max_observed_unvalidated_block_height": true,
+              "peer_id": true,
+              "sync_status": true,
+              "uptime_of_node": true,
+              "version": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "error.backtrace": "Error Backtrace",
+              "error.sexp": "Error sexp",
+              "ip_address": "Node IP",
+              "public_key": "PK",
+              "timestamp": "Timestamp"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-opensearch-datasource",
+        "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": true
+          },
+          "mappings": [],
+          "noValue": "No Node Crashes Detected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 4,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "enablePagination": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "9.5.2",
+      "targets": [
+        {
+          "alias": "",
+          "bucketAggs": [],
+          "datasource": {
+            "type": "grafana-opensearch-datasource",
+            "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+          },
+          "format": "table",
+          "metrics": [
+            {
+              "id": "1",
+              "settings": {
+                "order": "desc",
+                "size": "500",
+                "useTimeRange": true
+              },
+              "type": "raw_data"
+            }
+          ],
+          "query": "_index:\"node-error*\"",
+          "queryType": "lucene",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Error Detail",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "_id": true,
+              "_index": true,
+              "_type": true,
+              "block_height_at_best_tip": false,
+              "catchup_job_states.failed": false,
+              "catchup_job_states.finished": false,
+              "catchup_job_states.to_build_breadcrumb": false,
+              "catchup_job_states.to_download": false,
+              "catchup_job_states.to_initial_validate": false,
+              "catchup_job_states.to_verify": false,
+              "catchup_job_states.wait_for_parent": false,
+              "chain_id": true,
+              "commit_hash": false,
+              "contact_info": true,
+              "error.commit_id": true,
+              "git_branch": false,
+              "hardware_info": false,
+              "id": true,
+              "ip_address": false,
+              "max_observed_block_height": false,
+              "max_observed_unvalidated_block_height": false,
+              "peer_id": false,
+              "sync_status": false,
+              "uptime_of_node": false,
+              "version": true
+            },
+            "indexByName": {
+              "_id": 1,
+              "_index": 2,
+              "_type": 3,
+              "block_height_at_best_tip": 21,
+              "catchup_job_states.failed": 4,
+              "catchup_job_states.finished": 5,
+              "catchup_job_states.to_build_breadcrumb": 6,
+              "catchup_job_states.to_download": 7,
+              "catchup_job_states.to_initial_validate": 8,
+              "catchup_job_states.to_verify": 9,
+              "catchup_job_states.wait_for_parent": 10,
+              "chain_id": 11,
+              "commit_hash": 12,
+              "contact_info": 13,
+              "error.backtrace": 14,
+              "error.commit_id": 15,
+              "error.sexp": 16,
+              "git_branch": 17,
+              "hardware_info": 18,
+              "id": 19,
+              "ip_address": 20,
+              "max_observed_block_height": 22,
+              "max_observed_unvalidated_block_height": 23,
+              "peer_id": 24,
+              "public_key": 25,
+              "sync_status": 26,
+              "timestamp": 0,
+              "uptime_of_node": 27,
+              "version": 28
+            },
+            "renameByName": {
+              "_id": "",
+              "_index": "",
+              "_type": "",
+              "block_height_at_best_tip": "Block Height Best Tip",
+              "catchup_job_states.failed": "Catchup jobs failed",
+              "catchup_job_states.finished": "Catchup jobs finished",
+              "catchup_job_states.to_build_breadcrumb": "Catchup jobs build breadcrumb",
+              "catchup_job_states.to_download": "Catchup jobs download",
+              "catchup_job_states.to_initial_validate": "Catchup jobs initial validate",
+              "catchup_job_states.to_verify": "Catchup jobs verify",
+              "catchup_job_states.wait_for_parent": "Catchup jobs wait for parent",
+              "chain_id": "",
+              "commit_hash": "Commit Hash",
+              "error.backtrace": "Error Backtrace",
+              "error.sexp": "Error sexp",
+              "git_branch": "GH branch",
+              "hardware_info": "Hardware",
+              "id": "",
+              "ip_address": "IP address",
+              "max_observed_block_height": "Block Height Max Observed",
+              "max_observed_unvalidated_block_height": "Block Height Unvalidated",
+              "peer_id": "Peer ID",
+              "public_key": "PK",
+              "sync_status": "Sync Status",
+              "timestamp": "Timestamp",
+              "uptime_of_node": "Uptime"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "datasource": {
+          "type": "grafana-opensearch-datasource",
+          "uid": "e7d1e8a3-ba89-4d25-a6ee-2fdee996a5d6"
+        },
+        "filters": [],
+        "hide": 0,
+        "name": "Filters",
+        "skipUrlSync": false,
+        "type": "adhoc"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Error Collection POC",
+  "uid": "cd6eaed2-6c52-46dc-b768-cd59e03c9364",
+  "version": 8,
+  "weekStart": ""
+}
